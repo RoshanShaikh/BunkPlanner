@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "717007503209",
+    "project_id": "bunk-planer",
+    "storage_bucket": "bunk-planer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717007503209:android:ab086c03cd2482bfa187f8",
+        "android_client_info": {
+          "package_name": "com.example.bunk_planner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "717007503209-vc3jnh2sbuv2mhuob8lftsnea94djbr8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrqlDuwtGFn7LxE2DtygJxl1wzZwH6oww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "717007503209-vc3jnh2sbuv2mhuob8lftsnea94djbr8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "717007503209-631krp7355mvcv4r2gbqm2minn9i1olu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.bunkPlanner"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
