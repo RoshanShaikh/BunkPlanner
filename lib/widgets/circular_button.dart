@@ -5,11 +5,15 @@ class CircularButton extends StatelessWidget {
       {Key? key,
       required this.onPressed,
       this.radius = 45,
+      this.color = Colors.white,
+      this.splashColor,
       required this.child})
       : super(key: key);
   final Function() onPressed;
   final double radius;
   final Widget child;
+  final Color color;
+  final Color? splashColor;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +25,12 @@ class CircularButton extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(radius),
-          color: Colors.white,
+          color: color,
         ),
         child: MaterialButton(
           elevation: 5,
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-          splashColor: Colors.lightBlue[100],
+          splashColor: splashColor,
           onPressed: onPressed,
           child: child,
         ),

@@ -2,6 +2,8 @@ import 'package:bunk_planner/screens/formfield.dart';
 import 'package:bunk_planner/screens/homepage.dart';
 import 'package:bunk_planner/screens/login.dart';
 import 'package:bunk_planner/screens/course_form.dart';
+import 'package:bunk_planner/screens/my_subjects.dart';
+import 'package:bunk_planner/screens/subject_form.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -41,20 +43,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorSchemeSeed: Color.fromRGBO(50, 75, 205, 1),
+        fontFamily: GoogleFonts.heebo().fontFamily,
       ),
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-        FormBuilderLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: FormBuilderLocalizations.delegate.supportedLocales,
       initialRoute: 'loginScreen',
       // initialRoute: 'userDataForm',
       // initialRoute: 'loginScreen',
       // home: CompleteForm(),
       routes: {
+        'mySubjects': (context) => MySubjectsPage(),
         'homePage': (BuildContext context) => HomePage(),
         'formField': (BuildContext context) => const CompleteForm(),
         'loginScreen': (BuildContext context) => const LoginScreen(),

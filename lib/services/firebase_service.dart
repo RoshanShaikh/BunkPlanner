@@ -16,6 +16,10 @@ class FirebaseService {
     return data;
   }
 
+  Future<void> setUserData(String userId, Map<String, dynamic> data) async {
+    await collectionUser.doc(userId).set(data);
+  }
+
   Future<Map<String, dynamic>?> getTermsData(
       String userId, String termId) async {
     CollectionReference<Map<String, dynamic>> collectionTerms =
@@ -45,6 +49,15 @@ class FirebaseService {
     };
   }
 
+  Future<void> setTermData(
+      String userId, String termId, Map<String, dynamic> data) async {
+    CollectionReference<Map<String, dynamic>> collectionTerms =
+        collectionUser.doc(userId).collection('terms');
+    final docTerm = collectionTerms.doc(termId);
+
+    await docTerm.set(data);
+  }
+
   Future<List<Map<String, dynamic>>> getAttendance(
       {required String userId,
       required String termId,
@@ -64,9 +77,9 @@ class FirebaseService {
 
     List<Map<String, dynamic>> attendanceList = [];
 
-    attendanceData.docs.forEach((element) {
+    for (var element in attendanceData.docs) {
       attendanceList.add(element.data());
-    });
+    }
 
     List<Map<String, dynamic>> attendance = [];
     for (var element in attendanceList) {
@@ -78,18 +91,5 @@ class FirebaseService {
     }
 
     return attendance;
-  }
-
-  Future<void> setUserData(String userId, Map<String, dynamic> data) async {
-    await collectionUser.doc(userId).set(data);
-  }
-
-  Future<void> setTermData(
-      String userId, String termId, Map<String, dynamic> data) async {
-    CollectionReference<Map<String, dynamic>> collectionTerms =
-        collectionUser.doc(userId).collection('terms');
-    final docTerm = collectionTerms.doc(termId);
-
-    await docTerm.set(data);
   }
 }

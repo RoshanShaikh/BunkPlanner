@@ -2,6 +2,7 @@ import 'package:bunk_planner/global_data.dart';
 import 'package:bunk_planner/services/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -59,21 +60,22 @@ class NavigationDrawer extends StatelessWidget {
             const SizedBox(height: 10),
             menuItem(
               text: 'Subjects',
-              icon: Icons.menu_book,
+              icon: FontAwesome.book,
               onTap: () {
                 Navigator.pop(context);
+                Navigator.pushNamed(context, 'mySubjects');
               },
             ),
             menuItem(
               text: 'Timetable',
-              icon: Icons.calendar_month,
+              icon: FontAwesome5.calendar_alt,
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             menuItem(
               text: 'Attendance',
-              icon: FontAwesome.calendar_check_o,
+              icon: FontAwesome5.calendar_check,
               onTap: () {
                 Navigator.pop(context);
               },

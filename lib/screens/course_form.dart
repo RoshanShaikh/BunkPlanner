@@ -12,8 +12,6 @@ class CourseForm extends StatelessWidget {
   final TextEditingController _courseController = TextEditingController();
   final TextEditingController _semController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey();
-  String course = "";
-  String sem = "";
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +54,6 @@ class CourseForm extends StatelessWidget {
                   children: [
                     TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      onChanged: (value) {
-                        course = value.trim();
-                      },
-                      style: GoogleFonts.heebo(),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Can't Be Empty";
@@ -68,14 +62,13 @@ class CourseForm extends StatelessWidget {
                       textCapitalization: TextCapitalization.words,
                       textInputAction: TextInputAction.next,
                       controller: _courseController,
-                      decoration: InputDecoration(
-                        labelStyle: GoogleFonts.heebo(),
+                      decoration: const InputDecoration(
                         labelText: 'Course',
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.school,
                           size: 30,
                         ),
-                        border: const OutlineInputBorder(
+                        border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(20),
                           ),
@@ -94,21 +87,16 @@ class CourseForm extends StatelessWidget {
                           return "Max semester is 9";
                         }
                       },
-                      onChanged: (value) {
-                        sem = value.trim();
-                      },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: _semController,
                       keyboardType: TextInputType.number,
-                      style: GoogleFonts.heebo(),
-                      decoration: InputDecoration(
-                        labelStyle: GoogleFonts.heebo(),
+                      decoration: const InputDecoration(
                         labelText: 'Sem / Year',
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.history_edu,
                           size: 30,
                         ),
-                        border: const OutlineInputBorder(
+                        border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(20),
                           ),
@@ -124,8 +112,8 @@ class CourseForm extends StatelessWidget {
               CircularButton(
                 onPressed: () async {
                   if (_formKey.currentState?.validate() == true) {
-                    appUser?.course = course;
-                    appUser?.sem = int.parse(sem);
+                    appUser?.course = _courseController.text.trim();
+                    appUser?.sem = int.parse(_semController.text.trim());
                     await dbService
                         ?.setUserData(
                           appUser!.userId!,

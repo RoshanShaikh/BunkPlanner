@@ -26,7 +26,19 @@ initAppUser() async {
     final userData = await dbService?.getUserData(user.uid);
     if (userData != null) {
       appUser = AppUser.fromJson(userData);
+      initTermData();
     }
+  }
+}
+
+initTermData() async {
+  final user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    final termsData = await dbService?.getTermsData(
+        user.uid, '${appUser?.course} - ${appUser?.sem}');
+
+    subjects = termsData?['subjects'];
+    timetable = termsData?['timetable'];
   }
 }
 

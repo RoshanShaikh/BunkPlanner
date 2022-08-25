@@ -17,7 +17,7 @@ class LoginScreen extends StatelessWidget {
       required VoidCallback userNotExist}) async {
     EasyLoading.show(status: "Signing In", dismissOnTap: false);
     try {
-      await signInWithGoogle().then((value) => null);
+      await signInWithGoogle();
       final user = FirebaseAuth.instance.currentUser;
       if (user != null) {
         EasyLoading.showSuccess('Ready to Bunk!');
@@ -32,7 +32,6 @@ class LoginScreen extends StatelessWidget {
         throw Exception();
       }
     } catch (e) {
-      print(e.toString());
       EasyLoading.showError('Oops!\nSomething Went Wrong');
     }
     EasyLoading.dismiss(animation: true);
@@ -40,8 +39,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    signOut();
-    appUser = null;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Background(
@@ -88,14 +85,14 @@ class LoginScreen extends StatelessWidget {
                       'assets/images/google_logo.png',
                       width: 40,
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "Login With Google",
-                      style: GoogleFonts.heebo(
-                        fontSize: 20,
-                        color: Colors.grey[900],
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(
+                        "Login With Google",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.grey[900],
+                        ),
                       ),
                     ),
                   ],
